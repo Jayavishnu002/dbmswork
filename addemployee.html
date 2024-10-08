@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="2xl:container mx-auto">
+
+        <!-- Header -->
+        <div class="w-[90%] mx-auto flex justify-between py-4">
+            <p class="text-xl font-bold">ADMIN ACCESS</p>
+            <div>
+                <button id="editEmpBtn" class="bg-yellow-500 text-white px-4 py-2 rounded-md">Edit Employee</button>
+            </div>
+        </div>
+
+        <!-- Show Employee Details -->
+        <div id="employeeList" class="w-[90%] mx-auto text-center py-4"></div>
+
+        <!-- Add Employee Form -->
+        <div id="addEmployeeForm" class="w-[90%] mx-auto py-4 hidden ">
+            <h2 class="text-lg font-bold my-3">Add Employee</h2>
+            <form action="" class="w-[100%] mx-auto" id="employeeForm">
+                <div class="flex flex-row items-center mb-2">
+                    <label for="employeeName" class="mx-2 w-[30%] text-left">Employee Name</label>
+                    <input id="employeeName" type="text" placeholder="Employee Name"
+                        class="border  rounded p-2 w-[70%]">
+                </div>
+
+                <div class="flex flex-row items-center mb-2">
+                    <label for="employeeEmail" class="mx-2 w-[30%] text-left">Employee Email</label>
+                    <input id="employeeEmail" type="email" placeholder="Email" class="border  rounded p-2 w-[70%]">
+                </div>
+
+                <div class="flex flex-row items-center mb-2">
+                    <label for="employeePhone" class="mx-2 w-[30%] text-left">Phone Number</label>
+                    <input id="employeePhone" type="text" placeholder="Phone Number" class="border rounded p-2 w-[70%]">
+                </div>
+
+                <div class="flex flex-row items-center mb-2">
+                    <label for="employeeDesignation" class="mx-2 w-[30%] text-left">Designation</label>
+                    <input id="employeeDesignation" type="text" placeholder="Designation"
+                        class="border rounded p-2 w-[70%]">
+                </div>
+
+                <div class="flex flex-row items-center mb-2">
+                    <label for="adminId" class="mx-2 w-[30%] text-left">Admin ID</label>
+                    <input id="adminId" type="text" placeholder="Admin ID" class="border rounded p-2 w-[70%]">
+                </div>
+
+                <div class="flex flex-row items-center mb-2">
+                    <label for="empId" class="mx-2 w-[30%] text-left">Employee ID</label>
+                    <input id="empId" type="text" placeholder="Employee ID" class="border rounded p-2 w-[70%]">
+                </div>
+
+                <div class="flex gap-3 mx-3">
+                    <button id="submitBtn" type="submit"
+                        class="bg-green-500 text-white px-4 py-2 rounded-md mr-2">Submit</button>
+                    <button id="cancelBtn" type="button"
+                        class="bg-red-500 text-white px-4 py-2 rounded-md">Cancel</button>
+                </div>
+
+                <!-- Popup Messages -->
+                <div id="successMessage"
+                    class="hidden bg-green-500 text-white p-4 rounded-md mt-4 text-center transition-opacity duration-300 opacity-0 w-[30%]">
+                    Submitted successfully!
+                </div>
+
+                <div id="cancelMessage"
+                    class="hidden bg-red-500 text-white p-4 rounded-md mt-4 text-center transition-opacity duration-300 opacity-0 w-[30%]">
+                    Cancelled successfully!
+                </div>
+
+            </form>
+
+
+
+        </div>
+
+        <!-- Last Portion -->
+        <div class="w-[90%] mx-auto text-center py-4">
+            <button class="bg-green-500 text-white px-4 py-2 rounded-md" id="addbtn">Add Employee</button>
+        </div>
+    </div>
+    <script>
+        const empf = document.getElementById("addEmployeeForm")
+        const addbutton = document.getElementById("addbtn")
+        const cancelbutton = document.getElementById("cancelBtn")
+        const editbutton = document.getElementById("editEmpBtn")
+
+
+        addbutton.addEventListener("click", () => {
+            console.log(empf)
+            empf.classList.toggle("hidden")
+            addbutton.classList.toggle("hidden")
+            editbutton.classList.add("hidden")
+        })
+
+        cancelbutton.addEventListener("click", cancelForm)
+
+
+        // popup script
+        document.getElementById('employeeForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            // Check if all required fields are filled
+            const name = document.getElementById('employeeName').value.trim();
+            const email = document.getElementById('employeeEmail').value.trim();
+            const phone = document.getElementById('employeePhone').value.trim();
+            const designation = document.getElementById('employeeDesignation').value.trim();
+            const adminId = document.getElementById('adminId').value.trim();
+            const empId = document.getElementById('empId').value.trim();
+
+            if (name && email && phone && designation && adminId && empId) {
+                const successPopup = document.getElementById('successMessage');
+                successPopup.classList.remove('hidden'); // Show the success popup
+                successPopup.classList.add('opacity-100'); // Set opacity to 1 for visibility
+
+                // Hide the success popup after 2 seconds
+                setTimeout(() => {
+                    successPopup.classList.remove('opacity-100'); // Fade out
+                    setTimeout(() => {
+                        successPopup.classList.add('hidden'); // Hide it completely after fading
+                        document.getElementById('employeeForm').reset();
+                        empf.classList.add("hidden"); // Hide the form
+                        editbutton.classList.remove("hidden"); // Show the edit button
+                        addbutton.classList.remove("hidden");
+                    }, 300); // Match the duration of the fade-out transition
+                }, 2000);
+            } else {
+                alert("Please fill in all fields."); // Alert if fields are missing
+            }
+        });
+
+        function cancelForm() {
+            // Show the cancel popup
+            const cancelPopup = document.getElementById('cancelMessage');
+            cancelPopup.classList.remove('hidden'); // Show the cancel popup
+            cancelPopup.classList.add('opacity-100'); // Set opacity to 1 for visibility
+
+            // Hide the cancel popup after 2 seconds and then close the form
+            setTimeout(() => {
+                cancelPopup.classList.remove('opacity-100'); // Fade out
+                setTimeout(() => {
+                    cancelPopup.classList.add('hidden'); // Hide it completely after fading
+                    // Reset the form fields
+                    document.getElementById('employeeForm').reset();
+                    empf.classList.add("hidden"); // Hide the form
+                    editbutton.classList.toggle("hidden")
+
+                    addbutton.classList.remove("hidden"); // Show the add button
+                }, 300); // Match the duration of the fade-out transition
+            }, 1000); // Delay before hiding the form
+        }
+
+    </script>
+
+</body>
+
+</html>
