@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Sidebar Example</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .backimg1 {
+            background-image: url(https://ik.imagekit.io/cluqqmqj7/dbms%20project/login%20bg.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        @keyframes flip {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateY(180deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-flip {
+            animation: flip 4.5s infinite alternate;
+            animation-play-state: running;
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        /* Custom styles for sidebar links */
+        .sidebar-link {
+            transition: background-color 0.3s ease;
+            color: black; /* Text color */
+            padding: 15px; /* Add padding for better hit area */
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 0.5rem; /* Rounded corners */
+            background-color: transparent; /* Default transparent background */
+            text-decoration: none; /* No underline */
+        }
+
+        .sidebar-link:hover {
+            background-color: rgba(113, 128, 150, 0.5); /* Darker gray on hover */
+        }
+
+        .active {
+            background-color: black; /* Black background for active link */
+            color: white; /* White text for active link */
+            font-weight: bold; /* Bold text for active link */
+            text-decoration: underline; /* Underline for active link */
+        }
+
+        /* Flip animation for the content area */
+        .flip {
+            animation: flip 0.5s forwards; /* 0.5 seconds for the flip */
+        }
+    </style>
+</head>
+
+<body class="backimg1 font-[poppins]">
+    <div class="2xl:container mx-auto flex md:justify-center md:items-center">
+        <!-- Sidebar Container -->
+        <div class="w-[35%]  md:w-[33%] h-[100vh]">
+            <div class="my-4 rounded-3xl mt-3 font-[poppins] bg-slate-300 bg-opacity-50 h-[96%] m-2 text-black p-5">
+                <nav>
+                    <ul class="gap-y-7 flex py-5 text-[10px] md:text-[16px] flex-col md:text-center">
+                        <li><a href="#" data-content="home" class="sidebar-link active rounded-3xl px-4 md:px-10">Home</a></li> <!-- Default active -->
+                        <li><a href="#" data-content="about" class="sidebar-link rounded-3xl px-4 md:px-10">About</a></li>
+                        <li><a href="#" data-content="team" class="sidebar-link rounded-3xl px-4 md:px-10">Our Team</a></li>
+                        <li><a href="./login.html" class="sidebar-link rounded-3xl px-4 md:px-10">Login</a></li>
+                        <li><a href="#" data-content="contact" class="sidebar-link rounded-3xl px-4 md:px-10">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content Container -->
+        <div class="w-[65%] md:w-[77%] h-[100vh] mx-auto space-y-4 py-3 px-2">
+            <div class="flex items-center bg-opacity-50 bg-slate-300 justify-center space-x-4 mt-3 border border-black px-4 py-2 rounded-3xl">
+                <img src="https://ik.imagekit.io/cluqqmqj7/dbms%20project/Screenshot%202024-10-09%20235600.png" alt="logo"
+                    class="h-12 w-12 rounded-full transition-transform duration-200 animate-flip logo border border-black" id="logo">
+                <p id="techverse" class="text-2xl font-[poppins] text-black font-bold py-1"></p>
+            </div>
+
+            <div class="p-5 flex-1 h-[85%] bg-opacity-50 bg-slate-300 rounded-3xl" id="content">
+                <h1 class="text-2xl font-[poppins] font-bold">Welcome to our website!</h1>
+                <p class="font-[poppins]">Please select an option from the sidebar.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to animate letters for "TECHVERSE"
+        function animateLetters() {
+            const text = "TECHVERSE";
+            const techverseContainer = document.getElementById('techverse');
+            techverseContainer.innerHTML = ''; // Clear previous letters
+            let delay = 0;
+
+            // Create span for each letter
+            text.split('').forEach((letter) => {
+                const span = document.createElement('span');
+                span.textContent = letter;
+                span.classList.add('letter');
+                span.style.animationDelay = `${delay}s`; // Set delay for each letter
+                techverseContainer.appendChild(span);
+                delay += 0.5; // Increase delay for the next letter
+            });
+
+            // Keep the logo flipping until all letters have appeared
+            setTimeout(() => {
+                const logo = document.getElementById('logo');
+                logo.style.animationPlayState = 'paused'; // Pause the logo animation
+
+                // Wait for 2 seconds before restarting the animations
+                setTimeout(() => {
+                    logo.style.animationPlayState = 'running'; // Resume the logo animation
+                    animateLetters(); // Restart the letter animation
+                }, 2000); // Pause for 2 seconds
+            }, delay * 1000); // Delay matches the letter animation duration
+        }
+
+        // Function to setup navigation links
+        function setupNavLinks() {
+            const links = document.querySelectorAll('nav ul li a');
+            const contentDiv = document.getElementById('content');
+
+            links.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    const contentType = event.target.getAttribute('data-content');
+                    if (contentType) {
+                        event.preventDefault();
+
+                        // Clear active class from all links and reset background color
+                        links.forEach(link => {
+                            link.classList.remove('active');
+                        });
+
+                        // Set active class for the clicked link
+                        event.target.classList.add('active');
+
+                        // Add the flip animation class to the content area
+                        contentDiv.classList.add('flip');
+
+                        // Delay content change to allow the animation to finish
+                        setTimeout(() => {
+                            // Use the predefined content based on the selected link
+                            switch (contentType) {
+                                case 'home':
+                                    contentDiv.innerHTML = homeContent;
+                                    break;
+                                case 'about':
+                                    contentDiv.innerHTML = aboutContent;
+                                    break;
+                                case 'team':
+                                    contentDiv.innerHTML = teamContent;
+                                    break;
+                                case 'contact':
+                                    contentDiv.innerHTML = contactContent;
+                                    break;
+                                default:
+                                    contentDiv.innerHTML = `<h1 class="text-2xl font-bold">Welcome to our website!</h1><p>Please select an option from the sidebar.</p>`;
+                                    break;
+                            }
+
+                            // Remove flip class after the animation is complete
+                            contentDiv.classList.remove('flip');
+                        }, 500); // This should match the duration of the flip animation
+                    }
+                });
+            });
+        }
+
+        // Define content as strings
+        const homeContent = `
+            <h1 class="text-2xl font-bold">Home</h1>
+            <p>Welcome to the homepage! Here you can find the latest updates and news.</p>
+            <p>Check out our featured articles and more!</p>
+        `;
+
+        const aboutContent = `
+            <h1 class="text-2xl font-bold">About Us</h1>
+            <p>We are a company that values innovation, integrity, and excellence.</p>
+            <p>Founded in 2024, we have been committed to delivering top-notch services to our clients.</p>
+        `;
+
+        const teamContent = `
+            <h1 class="text-2xl font-bold">Our Team</h1>
+            <p>Meet our amazing team of professionals dedicated to your success!</p>
+            <p>We have experts from various fields working together to provide the best solutions.</p>
+        `;
+
+        const contactContent = `
+            <h1 class="text-2xl font-bold">Contact Us</h1>
+            <p>If you have any questions, feel free to reach out!</p>
+            <p>Email us at <a href="mailto:info@company.com" class="text-blue-500">info@company.com</a></p>
+        `;
+
+        // Function to reinitialize animations and links when returning to the page
+        function initPage() {
+            animateLetters(); // Start the "TECHVERSE" animation
+            setupNavLinks();  // Set up the sidebar navigation links
+
+            // Set the default active link to "Home" and load its content
+            const defaultLink = document.querySelector('nav ul li a[data-content="home"]');
+            if (defaultLink) {
+                defaultLink.classList.add('active'); // Set active class
+                document.getElementById('content').innerHTML = homeContent; // Load home content
+            }
+        }
+
+        // Start animations and event listeners when page is fully loaded
+        document.addEventListener('DOMContentLoaded', initPage);
+
+        // Reinitialize animations and event listeners when navigating back to the page
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) { // If the page was cached
+                initPage(); // Restart the animations and re-setup links
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,83 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @keyframes flip {
+            0% {
+                transform: rotateY(0deg);
+            }
 
+            100% {
+                transform: rotateY(180deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-flip {
+            animation: flip 4.5s infinite alternate;
+            animation-play-state: running;
+            /* Default state is running */
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .backimg {
+            background-image: url(https://ik.imagekit.io/cluqqmqj7/dbms%20project/login%20bg.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
+
 <body class="backimg ">
-   <div class="2xl:container mx-auto">
-    <div class="w-[50%] mx-auto h-screen   flex flex-col  justify-center items-center ">
-        <div class="bg-slate-200 bg-opacity-50 border border-black p-6 space-y-4 rounded-2xl text-white">
+    <div class="2xl:container mx-auto">
+        <div class="w-[90%]  px-4   my-3">
 
-            <div class="w-[100%] ">
-                <ul class="flex flex-row justify-around bg-black px-2 py-1 rounded-xl   ">
-                    <li  id="admin-tab" class="hover:bg-gray-700 px-2 py-1 rounded"><a href="#" onclick="showForm('admin')">Admin Login</a></li>
-                    <li id="employee-tab"  class="hover:bg-gray-700 px-2 py-1 rounded"><a href="#" onclick="showForm('employee')" >Employee Login</a></li>
-                </ul>
-            </div>
-    
-            <div id="admin-form" class="hidden"> <!-- Admin Form -->
-                <h2 class="text-2xl font-bold">Admin Login</h2>
-                <p>Please enter your admin credentials below</p>
-                <form action="" >
-                    <label for="admin-email" class="block mb-2">Email</label>
-                    <input type="text" id="admin-email" placeholder="Enter the email" required class="border-2 border-black py-1 px-2 rounded-xl w-full mb-4">
-                    
-                    <label for="admin-password" class="block mb-2">Password</label>
-                    <input type="password" id="admin-password" placeholder="Enter the password" required class="border-2 border-black py-1 px-2 rounded-xl w-full mb-4">
-                    
-                    <button class="rounded-2xl bg-slate-400 py-1 px-3 border border-black w-full">Sign in</button>
-                </form>
-                <p class="mt-4">Don't have an account? <a href="#" class="text-blue-500 hover:underline">Register here</a></p>
-    
-            </div>
-
-            <div id="employee-form" class="space-y-2"> <!-- Employee Form -->
-                <h2 class="text-2xl text-black font-bold">Welcome Back!</h2>
-                <p class="text-black">Please enter your credentials below</p>
-                <form action="">
-                    <label for="email" class="block mb-2 text-black font-semibold">Email</label>
-                    <input type="text" id="email" placeholder="Enter the email" required class="border-2 border-black py-1 px-2 rounded-xl w-full mb-4">
-                    
-                    <label for="password" class="block mb-2 text-black font-semibold">Password</label>
-                    <input type="password" id="password" placeholder="Enter the password" required class="border-2 border-black py-1 px-2 rounded-xl w-full mb-4">
-                    
-                    <button class="rounded-2xl bg-black py-1 px-3 border border-white  w-full">Sign in</button>
-                </form>
-                <p class="mt-4 text-black">Don't have an account? <a href="#" class="text-blue-500 font-semibold hover:underline">Register here</a></p>
-            </div>
+            <a href="./home.html">
+                
+                <div style="padding: 1rem;">
+                    <div
+                        class="w-[120px]  hover:bg-slate-500 hover:underline flex bg-slate-300 bg-opacity-50 items-center justify-center  border-2 rounded-3xl border-black shadow-inner ">
+                        <svg  fill="currentColor" viewbox="0 0 16 16" height="1em" width="1em" {...props}>
+                            <path fillrule="evenodd"
+                                d="M15 8a.5.5 0 00-.5-.5H2.707l3.147-3.146a.5.5 0 10-.708-.708l-4 4a.5.5 0 000 .708l4 4a.5.5 0 00.708-.708L2.707 8.5H14.5A.5.5 0 0015 8z" />
+                        </svg>
+                        <button class="rounded-2xl text-black py-2  px-4 font-bold font-[poppins] ">Home</button>
+                    </div>
+                </div>
+            </a>
 
         </div>
-            
+
+        <div class="w-[90%] md:w-[60%] lg:w-[50%] mx-auto h-screen flex flex-col justify-center items-center ">
+            <div
+                class="bg-slate-300 bg-opacity-50 border border-black p-8 space-y-4 rounded-2xl text-white shadow-black shadow-inner shadow-2xl">
+                <div class="w-full flex items-center justify-center space-x-4 border-4 border-black px-4 py-2 rounded-3xl">
+                    <img src="https://ik.imagekit.io/cluqqmqj7/dbms%20project/Screenshot%202024-10-09%20235600.png"
+                        alt="logo"
+                        class="h-12 w-12 rounded-full transition-transform duration-200 animate-flip logo border border-black"
+                        id="logo">
+                    <p id="techverse" class="text-2xl  font-[poppins] text-black font-bold py-1"></p>
+                </div>
+                <div class="w-full ">
+                    <ul class="flex flex-row justify-around bg-black px-4 py-2 rounded-3xl shadow-xl  font-[poppins]">
+                        <li id="admin-tab" class="hover:bg-slate-500 hover:bg-opacity-50 px-4 py-2 rounded-3xl mx-1"><a
+                                href="#" onclick="showForm('admin')">Admin Login</a></li>
+                        <li id="employee-tab" class="bg-slate-500 bg-opacity-50 px-4 py-2 rounded-3xl"><a href="#"
+                                onclick="showForm('employee')">Employee Login</a></li>
+                    </ul>
+                </div>
+
+                <div id="admin-form" class="hidden font-[poppins] "> <!-- Admin Form -->
+                    <h2 class="text-[22px] text-black font-bold">Admin Login</h2>
+                    <p class="text-black">Please enter your admin credentials below</p>
+                    <form action="">
+                        <label for="admin-email" class="block mb-2 text-black font-semibold">Email</label>
+                        <input type="text" id="admin-email" placeholder="Enter the email" required
+                            class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+                        <label for="admin-password" class="block mb-2 text-black font-semibold">Password</label>
+                        <input type="password" id="admin-password" placeholder="Enter the password" required
+                            class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+                        <button class="rounded-2xl bg-black text-white py-2 px-4 border border-black w-full">Sign
+                            in</button>
+                    </form>
+
+                </div>
+
+                <div id="employee-form" class="space-y-2 font-[poppins]"> <!-- Employee Form -->
+                    <h2 class="text-[22px] text-black font-[700]">Welcome Back!</h2>
+                    <p class="text-black text-[16px] ">Please enter your credentials below</p>
+                    <form action="">
+                        <label for="email" class="block mb-2 text-black font-semibold">Email</label>
+                        <input type="text" id="email" placeholder="Enter the email" required
+                            class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+                        <label for="password" class="block mb-2 text-black font-semibold">Password</label>
+                        <input type="password" id="password" placeholder="Enter the password" required
+                            class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+                        <button class="rounded-2xl bg-black text-white py-2 px-4 border border-black w-full">Sign
+                            in</button>
+                    </form>
+                    <p class="mt-4 text-black">Don't have an account? <a href="./register.html"
+                            class="text-red-600 font-semibold hover:underline">Register here</a></p>
+                </div>
+            </div>
         </div>
     </div>
-   </div>
-   <script>
-    function showForm(formType) {
-        const adminForm = document.getElementById('admin-form');
-        const employeeForm = document.getElementById('employee-form');
-        const adminTab = document.getElementById('admin-tab');
-        const employeeTab = document.getElementById('employee-tab');
-        if (formType === 'admin') {
-            adminForm.classList.remove('hidden');
-            employeeForm.classList.add('hidden');
-            adminTab.classList.add('bg-gray-700');
-            employeeTab.classList.remove('bg-gray-700');
-        } else {
-            employeeForm.classList.remove('hidden');
-            adminForm.classList.add('hidden');
-            employeeTab.classList.add('bg-gray-700'); 
-            adminTab.classList.remove('bg-gray-700');
+
+    <script>
+        // Function to animate letters of "TECHVERSE"
+        const text = "TECHVERSE";
+        const techverseContainer = document.getElementById('techverse');
+
+        function animateLetters() {
+            techverseContainer.innerHTML = ''; // Clear previous letters
+            let delay = 0;
+
+            // Create span for each letter
+            text.split('').forEach((letter) => {
+                const span = document.createElement('span');
+                span.textContent = letter;
+                span.classList.add('letter');
+                span.style.animationDelay = `${delay}s`; // Set delay for each letter
+                techverseContainer.appendChild(span);
+                delay += 0.5; // Increase delay for the next letter
+            });
+
+            // Keep the logo flipping until all letters have appeared
+            setTimeout(() => {
+                // Stop the flipping animation of the logo
+                const logo = document.getElementById('logo');
+                logo.style.animationPlayState = 'paused'; // Pause the logo animation
+
+                // Wait for 2 seconds before restarting the animations
+                setTimeout(() => {
+                    logo.style.animationPlayState = 'running'; // Resume the logo animation
+                    animateLetters(); // Restart the letter animation
+                }, 2000); // Pause for 2 seconds
+            }, delay * 1000); // Delay matches the letter animation duration
         }
-    }
-</script>
-<style>
-    .backimg{
-        background-image: url(https://ik.imagekit.io/cluqqmqj7/dbms%20project/login%20bg.jpg);
-    }
-</style>
+
+        // Start the letter animation
+        animateLetters();
+
+        // Show form based on the selected tab
+        function showForm(formType) {
+            const adminForm = document.getElementById('admin-form');
+            const employeeForm = document.getElementById('employee-form');
+            const adminTab = document.getElementById('admin-tab');
+            const employeeTab = document.getElementById('employee-tab');
+            if (formType === 'admin') {
+                adminForm.classList.remove('hidden');
+                employeeForm.classList.add('hidden');
+                adminTab.classList.add('bg-slate-500');
+                adminTab.classList.add('bg-opacity-50');
+                employeeTab.classList.remove('bg-slate-500');
+            } else {
+                employeeForm.classList.remove('hidden');
+                adminForm.classList.add('hidden');
+                employeeTab.classList.add('bg-slate-500');
+                adminTab.classList.remove('bg-slate-500');
+            }
+        }
+    </script>
 </body>
+
 </html>
