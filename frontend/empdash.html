@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-
     <style>
         .backimg1 {
             background-image: url(https://ik.imagekit.io/cluqqmqj7/dbms%20project/login%20bg.jpg);
@@ -21,37 +20,6 @@
         .table-container {
             max-height: 300px;
             overflow-y: auto;
-        }
-
-        @keyframes flip {
-            0% {
-                transform: rotateY(0deg);
-            }
-            100% {
-                transform: rotateY(180deg);
-            }
-        }
-
-        .animate-flip {
-            animation: flip 4.5s infinite alternate;
-            animation-play-state: running;
-        }
-
-        .letter {
-            display: inline-block;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         #techverse {
@@ -73,6 +41,10 @@
             background-color: #64748b;
             color: white;
         }
+
+        .menu-item:hover {
+            background-color: #cbd5e1; /* Change this color as needed */
+        }
     </style>
 </head>
 
@@ -87,11 +59,10 @@
                 <h1 class="text-2xl border-b-2 border-black font-semibold">Employee Dashboard</h1>
                 <nav class="mt-6 font-bold">
                     <ul>
-                        <li class="menu-item py-2 my-1 px-4 hover:bg-slate-500 hover:underline rounded-full" data-page="dashboard"><a href="#" class="active">Dashboard</a></li>
-                        <li class="menu-item py-2 px-4 my-1 hover:bg-slate-500 hover:underline rounded-full" data-page="home"><a href="./home.html">Home</a></li>
-                        <li class="menu-item py-2 px-4 my-1 hover:bg-slate-500 hover:underline rounded-full" data-page="attendance"><a href="#" id="attendanceLink">Attendance</a></li>
-                        <li class="menu-item py-2 px-4 my-1 hover:bg-slate-500 hover:underline rounded-full" data-page="salary"><a href="#" id="salaryLink">Salary</a></li>
-                        <li class="menu-item py-2 px-4 my-1 hover:bg-slate-500 hover:underline rounded-full text-red-500" data-page="logout"><a href="./login.html">Logout</a></li>
+                        <li class="menu-item py-2 my-1 px-4 rounded-full" data-page="dashboard"><a href="#" class="active">Dashboard</a></li>
+                        <li class="menu-item py-2 px-4 my-1 rounded-full" data-page="attendance"><a href="#" id="attendanceLink">Attendance</a></li>
+                        <li class="menu-item py-2 px-4 my-1 rounded-full" data-page="salary"><a href="#" id="salaryLink">Salary</a></li>
+                        <li class="menu-item py-2 px-4 my-1 rounded-full text-red-500" data-page="logout"><a href="./login.html">Logout</a></li>
                     </ul>
                 </nav>
             </div>
@@ -112,20 +83,58 @@
                                         <th class="py-2 px-4 text-left">Department</th>
                                         <th class="py-2 px-4 text-left">Designation</th>
                                         <th class="py-2 px-4 text-left">Status</th>
+                                        <th class="py-2 px-4 text-left">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="employeeRow">
                                     <tr class="border-b border-black">
-                                        <td class="py-2 px-4">John Doe</td>
-                                        <td class="py-2 px-4">john@example.com</td>
-                                        <td class="py-2 px-4">IT</td>
-                                        <td class="py-2 px-4">Developer</td>
-                                        <td class="py-2 px-4">Active</td>
+                                        <td class="py-2 px-4" id="employeeName">John Doe</td>
+                                        <td class="py-2 px-4" id="employeeEmail">john@example.com</td>
+                                        <td class="py-2 px-4" id="employeeDept">IT</td>
+                                        <td class="py-2 px-4" id="employeeDesignation">Developer</td>
+                                        <td class="py-2 px-4" id="employeeStatus">Active</td>
+                                        <td class="py-2 px-4"><button id="editButton" class="bg-blue-500 text-white py-1 px-2 rounded">Edit</button></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                </div>
+
+                <div id="editEmployeeSection" class="hidden">
+                    <h1 class="text-3xl border-b-2 border-black py-1 font-semibold text-center">Edit Employee Details</h1>
+                    <form id="editForm" class="bg-white w-fit mx-auto p-4 flex-col h-fit rounded-3xl border border-black shadow-2xl">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="editName" class="block font-semibold">Name:</label>
+                                <input type="text" id="editName" class="border border-gray-300 rounded w-full p-2" value="John Doe" required>
+                            </div>
+                            <div>
+                                <label for="editEmail" class="block font-semibold">Email:</label>
+                                <input type="email" id="editEmail" class="border border-gray-300 rounded w-full p-2" value="john@example.com" required>
+                            </div>
+                            <div>
+                                <label for="editDept" class="block font-semibold">Department:</label>
+                                <input type="text" id="editDept" class="border border-gray-300 rounded w-full p-2" value="IT" required>
+                            </div>
+                            <div>
+                                <label for="editDesignation" class="block font-semibold">Designation:</label>
+                                <input type="text" id="editDesignation" class="border border-gray-300 rounded w-full p-2" value="Developer" required>
+                            </div>
+                            <div>
+                                <label for="editStatus" class="block font-semibold">Status:</label>
+                                <select id="editStatus" class="border border-gray-300 rounded w-full p-2" required>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                    <option value="On Leave">On Leave</option>
+                                </select>
+                            </div>
+                            <div class="flex justify-center">
+                                <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded">Update</button>
+                                <button type="button" id="cancelEdit" class="bg-red-500 text-white py-2 px-4 rounded ml-2">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
                 <div id="attendanceSection" class="hidden">
@@ -140,7 +149,7 @@
                                         <th class="py-2 px-4 text-left">Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="attendanceRow">
                                     <tr class="border-b border-black">
                                         <td class="py-2 px-4">2024-10-01</td>
                                         <td class="py-2 px-4">Present</td>
@@ -149,10 +158,15 @@
                                         <td class="py-2 px-4">2024-10-02</td>
                                         <td class="py-2 px-4">Absent</td>
                                     </tr>
+                                    <tr class="border-b border-black">
+                                        <td class="py-2 px-4">2024-10-03</td>
+                                        <td class="py-2 px-4">Present</td>
+                                    </tr>
                                     <!-- Add more attendance records as needed -->
                                 </tbody>
                             </table>
                         </div>
+                        <h2 class="font-semibold text-lg mt-4 text-center">Monthly Attendance Percentage: 75%</h2>
                     </div>
                 </div>
 
@@ -165,17 +179,37 @@
                                 <thead>
                                     <tr class="border-b border-black">
                                         <th class="py-2 px-4 text-left">Month</th>
-                                        <th class="py-2 px-4 text-left">Amount</th>
+                                        <th class="py-2 px-4 text-left">Salary</th>
+                                        <th class="py-2 px-4 text-left">Deductions</th>
+                                        <th class="py-2 px-4 text-left">Bonuses</th>
+                                        <th class="py-2 px-4 text-left">Total</th>
+                                        <th class="py-2 px-4 text-left">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="border-b border-black">
                                         <td class="py-2 px-4">October 2024</td>
-                                        <td class="py-2 px-4">$3000</td>
+                                        <td class="py-2 px-4">$4000</td>
+                                        <td class="py-2 px-4">$500</td>
+                                        <td class="py-2 px-4">$200</td>
+                                        <td class="py-2 px-4">$4300</td>
+                                        <td class="py-2 px-4">Paid</td>
                                     </tr>
                                     <tr class="border-b border-black">
                                         <td class="py-2 px-4">September 2024</td>
-                                        <td class="py-2 px-4">$2900</td>
+                                        <td class="py-2 px-4">$4000</td>
+                                        <td class="py-2 px-4">$300</td>
+                                        <td class="py-2 px-4">$150</td>
+                                        <td class="py-2 px-4">$4150</td>
+                                        <td class="py-2 px-4">Paid</td>
+                                    </tr>
+                                    <tr class="border-b border-black">
+                                        <td class="py-2 px-4">August 2024</td>
+                                        <td class="py-2 px-4">$4000</td>
+                                        <td class="py-2 px-4">$200</td>
+                                        <td class="py-2 px-4">$100</td>
+                                        <td class="py-2 px-4">$4100</td>
+                                        <td class="py-2 px-4">Paid</td>
                                     </tr>
                                     <!-- Add more salary records as needed -->
                                 </tbody>
@@ -188,27 +222,36 @@
     </div>
 
     <script>
-        function animateText() {
-            const text = "TECHVERSE";
-            const container = document.getElementById('techverse');
-            container.innerHTML = ''; // Clear existing content
+        const text = "TECHVERSE";
+        const techverseContainer = document.getElementById('techverse');
 
-            // Create and animate letters
-            text.split('').forEach((letter, index) => {
+        function animateLetters() {
+            techverseContainer.innerHTML = ''; // Clear previous letters
+            let delay = 0;
+
+            // Create span for each letter
+            text.split('').forEach((letter) => {
                 const span = document.createElement('span');
                 span.textContent = letter;
                 span.classList.add('letter');
-                span.style.animationDelay = `${index * 0.1}s`; // Delay for each letter
-                container.appendChild(span);
+                span.style.animationDelay = `${delay}s`; // Set delay for each letter
+                techverseContainer.appendChild(span);
+                delay += 0.1; // Increase delay for the next letter
             });
         }
 
+        // Start the letter animation
+        animateLetters();
+
+        // Show section based on the selected tab
         function showSection(section) {
             const sections = document.querySelectorAll('#contentArea > div');
             sections.forEach((sec) => {
                 sec.classList.add('hidden'); // Hide all sections
             });
-            document.getElementById(section).classList.remove('hidden'); // Show the selected section
+
+            const currentSection = document.getElementById(section);
+            currentSection.classList.remove('hidden'); // Show the selected section
 
             // Highlight the active menu item
             const menuItems = document.querySelectorAll('.menu-item');
@@ -218,19 +261,47 @@
             document.querySelector(`.menu-item[data-page="${section}"]`).classList.add('active');
         }
 
-        // Event listeners for navigation links
-        document.getElementById('attendanceLink').addEventListener('click', function () {
-            showSection('attendanceSection');
-        });
-
-        document.getElementById('salaryLink').addEventListener('click', function () {
-            showSection('salarySection');
-        });
-
-        // Show dashboard section by default
+        // Attach event listener for the edit button
         document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('editButton').addEventListener('click', function () {
+                document.getElementById('dashboardContent').classList.add('hidden');
+                document.getElementById('editEmployeeSection').classList.remove('hidden');
+            });
+
+            document.getElementById('editForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent form submission
+                // Update the table with the new values
+                document.getElementById('employeeName').textContent = document.getElementById('editName').value;
+                document.getElementById('employeeEmail').textContent = document.getElementById('editEmail').value;
+                document.getElementById('employeeDept').textContent = document.getElementById('editDept').value;
+                document.getElementById('employeeDesignation').textContent = document.getElementById('editDesignation').value;
+                document.getElementById('employeeStatus').textContent = document.getElementById('editStatus').value;
+
+                // Return to dashboard
+                document.getElementById('editEmployeeSection').classList.add('hidden');
+                document.getElementById('dashboardContent').classList.remove('hidden');
+            });
+
+            document.getElementById('cancelEdit').addEventListener('click', function () {
+                document.getElementById('editEmployeeSection').classList.add('hidden');
+                document.getElementById('dashboardContent').classList.remove('hidden');
+            });
+
+            // Event listeners for navigation links
+            document.querySelector('[data-page="dashboard"] a').addEventListener('click', function () {
+                showSection('dashboardContent');
+            });
+
+            document.getElementById('attendanceLink').addEventListener('click', function () {
+                showSection('attendanceSection');
+            });
+
+            document.getElementById('salaryLink').addEventListener('click', function () {
+                showSection('salarySection');
+            });
+
+            // Show dashboard section by default
             showSection('dashboardContent');
-            animateText(); // Start text animation
         });
     </script>
 </body>
