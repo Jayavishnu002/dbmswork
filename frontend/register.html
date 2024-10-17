@@ -7,11 +7,8 @@
     <title>Login Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .backimg {
             background-image: url(https://ik.imagekit.io/cluqqmqj7/dbms%20project/login%20bg.jpg);
@@ -21,57 +18,43 @@
     </style>
 </head>
 
-<body class="backimg ">
+<body class="backimg">
     <div class="2xl:container h-screen mx-auto my-5">
-        <div class="w-[90%]  px-4   my-3">
-
+        <div class="w-[90%] px-4 my-3">
             <a href="./home.html">
-                
                 <div style="padding: 1rem;">
-                    <div
-                        class="w-[120px]  hover:bg-slate-500 hover:underline flex bg-slate-300 bg-opacity-50 items-center justify-center  border-2 rounded-3xl border-black shadow-inner ">
-                        <svg  fill="currentColor" viewbox="0 0 16 16" height="1em" width="1em" {...props}>
-                            <path fillrule="evenodd"
-                                d="M15 8a.5.5 0 00-.5-.5H2.707l3.147-3.146a.5.5 0 10-.708-.708l-4 4a.5.5 0 000 .708l4 4a.5.5 0 00.708-.708L2.707 8.5H14.5A.5.5 0 0015 8z" />
+                    <div class="w-[120px] hover:bg-slate-500 hover:underline flex bg-slate-300 bg-opacity-50 items-center justify-center border-2 rounded-3xl border-black shadow-inner">
+                        <svg fill="currentColor" viewBox="0 0 16 16" height="1em" width="1em">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 00-.5-.5H2.707l3.147-3.146a.5.5 0 10-.708-.708l-4 4a.5.5 0 000 .708l4 4a.5.5 0 00.708-.708L2.707 8.5H14.5A.5.5 0 0015 8z" />
                         </svg>
-                        <button class="rounded-2xl text-black py-2  px-4 font-bold font-[poppins] ">Home</button>
+                        <button class="rounded-2xl text-black py-2 px-4 font-bold font-[poppins]">Home</button>
                     </div>
                 </div>
             </a>
-
         </div>
 
-        <div class="w-[90%] md:w-[60%] lg:w-[50%] mx-auto h-[90%]  flex flex-col justify-center items-center ">
-            <div
-                class="bg-slate-300 bg-opacity-50 border border-black p-8 space-y-4 rounded-2xl text-white shadow-black shadow-inner shadow-2xl">
-                
-
-
-
-                <div id="employee-form" class="space-y-2 font-[poppins]"> <!-- Employee Form -->
-                    <h2 class="text-[22px] text-black font-[700]">Join our team</h2>
-                    <p class="text-black text-[16px] ">Please enter your credentials below</p>
+        <div class="w-[90%] md:w-[60%] lg:w-[50%] mx-auto h-[90%] flex flex-col justify-center items-center">
+            <div class="bg-slate-300 bg-opacity-50 border border-black p-8 space-y-4 rounded-2xl shadow-black shadow-inner shadow-2xl">
+                <div id="employee-form" class="space-y-2 font-[poppins]">
+                    <h2 class="text-[22px] text-black font-bold">Join our team</h2>
+                    <p class="text-black text-[16px]">Please enter your credentials below</p>
                     <form action="">
                         <label for="name" class="block mb-2 text-black font-semibold">Name</label>
-                        <input type="name" id="name" placeholder="Enter the name" required
-                            class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+                        <input type="text" id="name" placeholder="Enter your name" required class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
 
-                            <label for="uname" class="block mb-2 text-black font-semibold">Username</label>
-                            <input type="text" id="uname" placeholder="Enter the username" required
-                                class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
-                            
+                        <label for="uname" class="block mb-2 text-black font-semibold">Username</label>
+                        <input type="text" id="uname" placeholder="Enter your username" required class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+
                         <label for="email" class="block mb-2 text-black font-semibold">Email</label>
-                        <input type="text" id="email" placeholder="Enter the email" required
-                            class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+                        <input type="email" id="email" placeholder="Enter your email" required class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+
                         <label for="password" class="block mb-2 text-black font-semibold">Password</label>
-                        <input type="password" id="password" placeholder="Enter the password" required
-                            class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
-                            <label for="cpassword" class="block mb-2 text-black font-semibold">Confirm Password</label>
-                            <input type="password" id="cpassword" placeholder="Confirm password" required
-                                class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
-                           
-                            <button class="rounded-2xl bg-black text-white py-2 px-4 border border-black w-full">Sign
-                            up</button>
+                        <input type="password" id="password" placeholder="Enter your password" required class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+
+                        <label for="cpassword" class="block mb-2 text-black font-semibold">Confirm Password</label>
+                        <input type="password" id="cpassword" placeholder="Confirm your password" required class="border-2 border-black py-2 px-3 rounded-xl w-full mb-4">
+
+                        <button type="submit" class="rounded-2xl bg-black text-white py-2 px-4 border border-black w-full">Sign Up</button>
                     </form>
                 </div>
             </div>
@@ -79,8 +62,7 @@
     </div>
 
     <script>
-
-        // Show form based on the selected tab
+        // Show form based on the selected tab (if needed for future use)
         function showForm(formType) {
             const adminForm = document.getElementById('admin-form');
             const employeeForm = document.getElementById('employee-form');
@@ -90,7 +72,6 @@
                 adminForm.classList.remove('hidden');
                 employeeForm.classList.add('hidden');
                 adminTab.classList.add('bg-slate-500');
-                adminTab.classList.add('bg-opacity-50');
                 employeeTab.classList.remove('bg-slate-500');
             } else {
                 employeeForm.classList.remove('hidden');
