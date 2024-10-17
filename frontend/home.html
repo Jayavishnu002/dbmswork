@@ -17,7 +17,7 @@
             height: 100vh;
         }
 
-        @keyframes flip {
+        /* @keyframes flip {
             0% {
                 transform: rotateY(0deg);
             }
@@ -25,7 +25,7 @@
             100% {
                 transform: rotateY(180deg);
             }
-        }
+        } */
 
         @keyframes fadeIn {
             0% {
@@ -83,13 +83,12 @@
 <body class="backimg1 font-[poppins]">
     <div class="2xl:container mx-auto flex md:justify-center md:items-center">
         <!-- Sidebar Container -->
-        <div class="w-[45%]  md:w-[33%] h-[100vh]">
-            <div class="my-4 rounded-3xl mt-3 font-[poppins] bg-slate-300 bg-opacity-50 h-[96%] m-1 text-black p-5">
+        <div class="  md:w-[25%] h-[100vh]">
+            <div class="my-4   rounded-3xl mt-1 md:mt-3 bg-slate-300 bg:opacity-50 font-[poppins]  bg-opacity-50 h-[96%] md:m-0 m-[1px] text-black md:p-1 ">
                 <nav>
-                    <ul class="gap-y-7 flex py-5 text-[10px] md:text-[16px] flex-col md:text-center">
+                    <ul class="gap-y-7 flex py-5 text-[8px] md:text-[16px] flex-col md:text-center">
                         <li><a href="#" data-content="home" class="sidebar-link active rounded-3xl px-4 md:px-10">Home</a></li> <!-- Default active -->
-                        <li><a href="#" data-content="about" class="sidebar-link rounded-3xl px-4 md:px-10">About</a></li>
-                        <li><a href="#" data-content="team" class="sidebar-link rounded-3xl px-4 md:px-10">Our Team</a></li>
+                        <li><a href="#" data-content="team" class="sidebar-link rounded-3xl md:px-10">Our Team</a></li>
                         <li><a href="./login.html" class="sidebar-link rounded-3xl px-4 md:px-10">Login</a></li>
                         <li><a href="#" data-content="contact" class="sidebar-link rounded-3xl px-4 md:px-10">Contact Us</a></li>
                     </ul>
@@ -98,7 +97,7 @@
         </div>
 
         <!-- Main Content Container -->
-        <div class="w-[65%] md:w-[77%] h-[100vh] mx-auto space-y-4 md:px-1 py-3 px-2">
+        <div class="w-[full]  md:w-[77%] h-[100vh] mx-auto space-y-4 py-3 px-2">
             <div class="flex items-center bg-opacity-50 bg-slate-300 justify-center space-x-4 mt-3 border border-black px-4 py-2 rounded-3xl">
                 <img src="https://ik.imagekit.io/cluqqmqj7/dbms%20project/Screenshot%202024-10-09%20235600.png" alt="logo"
                     class="h-12 w-12 rounded-full transition-transform duration-200 animate-flip logo border border-black" id="logo">
@@ -195,29 +194,81 @@
         }
 
         // Define content as strings
+        
         const homeContent = `
-            <h1 class="text-2xl font-bold">Home</h1>
-            <p>Welcome to the homepage! Here you can find the latest updates and news.</p>
-            <p>Check out our featured articles and more!</p>
-        `;
+    <h1 class="text-2xl font-bold">Welcome to TechVerse</h1>
+    <p>At TechVerse, we are revolutionizing the software development landscape. Our mission is to empower businesses with innovative solutions that drive growth and efficiency.</p>
+    
+    <h2 class="text-xl font-semibold">Who We Are <img src="https://img.icons8.com/ios-filled/20/000000/teamwork.png" alt="Team Icon" class="inline" /></h2>
+    <p>We are a passionate team of developers, engineers, and visionaries dedicated to delivering cutting-edge technology. From building advanced robots to creating user-friendly websites and apps, we specialize in transforming ideas into reality.</p>
+    
+    <h2 class="text-xl font-semibold">Our Services <img src="https://img.icons8.com/ios-filled/20/000000/services.png" alt="Services Icon" class="inline" /></h2>
+    <p>We offer a comprehensive range of services, including:</p>
+    <ul class="list-disc pl-5">
+        <li><img src="https://img.icons8.com/ios-filled/15/000000/checkmark.png" alt="Check Icon" class="inline" /> Custom Software Development</li>
+        <li><img src="https://img.icons8.com/ios-filled/15/000000/checkmark.png" alt="Check Icon" class="inline" /> Robotics Solutions</li>
+        <li><img src="https://img.icons8.com/ios-filled/15/000000/checkmark.png" alt="Check Icon" class="inline" /> Website Design and Development</li>
+        <li><img src="https://img.icons8.com/ios-filled/15/000000/checkmark.png" alt="Check Icon" class="inline" /> Mobile App Development</li>
+        <li><img src="https://img.icons8.com/ios-filled/15/000000/checkmark.png" alt="Check Icon" class="inline" /> Maintenance and Support</li>
+    </ul>
+    
+    <h2 class="text-xl font-semibold">Why Choose Us? </h2>
+    <p>With a focus on quality, innovation, and customer satisfaction, TechVerse is your ideal partner for software solutions. We work closely with our clients to ensure their vision is realized, providing ongoing support and expertise every step of the way.</p>
+    
+    <p>Join us on this exciting journey and let’s build the future together!</p>
+`;
 
-        const aboutContent = `
-            <h1 class="text-2xl font-bold">About Us</h1>
-            <p>We are a company that values innovation, integrity, and excellence.</p>
-            <p>Founded in 2024, we have been committed to delivering top-notch services to our clients.</p>
-        `;
 
-        const teamContent = `
-            <h1 class="text-2xl font-bold">Our Team</h1>
-            <p>Meet our amazing team of professionals dedicated to your success!</p>
-            <p>We have experts from various fields working together to provide the best solutions.</p>
-        `;
+const contactContent = `
+    <h1 class="text-2xl font-bold">Contact Us</h1>
+    <p>Have questions or need assistance? We're here to help! Reach out to us using the following methods:</p>
+    
+    <h2 class="text-xl font-semibold">Get in Touch</h2>
+    <ul class="list-disc pl-5">
+        <li>
+            <img src="https://img.icons8.com/ios-filled/20/000000/email.png" alt="Email Icon" class="inline mr-2" />
+            <strong>Email:</strong> 
+            <a href="mailto:info@techverse.com" class="text-blue-500">info@techverse.com</a> - We aim to respond within one business day.
+        </li>
+        <li>
+            <img src="https://img.icons8.com/ios-filled/20/000000/phone.png" alt="Phone Icon" class="inline mr-2" />
+            <strong>Phone:</strong> 
+            <a href="tel:+1234567890" class="text-blue-500">+1 (234) 567-890</a> - Call us during business hours.
+        </li>
+        <li>
+            <img src="https://img.icons8.com/ios-filled/20/000000/twitter.png" alt="Social Media Icon" class="inline mr-2" />
+            <strong>Social Media:</strong> Follow us on 
+            <a href="https://facebook.com/techverse" class="text-blue-500">Facebook</a>, 
+            <a href="https://twitter.com/techverse" class="text-blue-500">Twitter</a>, and 
+            <a href="https://linkedin.com/company/techverse" class="text-blue-500">LinkedIn</a>.
+        </li>
+    </ul>
 
-        const contactContent = `
-            <h1 class="text-2xl font-bold">Contact Us</h1>
-            <p>If you have any questions, feel free to reach out!</p>
-            <p>Email us at <a href="mailto:info@company.com" class="text-blue-500">info@company.com</a></p>
-        `;
+    <h2 class="text-xl font-semibold">Visit Us</h2>
+    <p>Our office is located at:</p>
+    <address class="pl-5">
+        TechVerse Headquarters<br>
+        123 Innovation Drive<br>
+        Silicon Valley, CA 94043<br>
+        USA
+    </address>
+
+    <h2 class="text-xl font-semibold">Business Hours</h2>
+    <p>We’re open:</p>
+    <ul class="list-disc pl-5">
+        <li>Monday to Friday: 9 AM - 6 PM</li>
+        <li>Saturday: 10 AM - 4 PM</li>
+        <li>Sunday: Closed</li>
+    </ul>
+
+    <p>We look forward to connecting with you!</p>
+`;
+
+
+
+        
+
+       
 
         // Function to reinitialize animations and links when returning to the page
         function initPage() {
